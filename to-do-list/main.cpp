@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <limits>
 using namespace std;
 
 class Task {
@@ -29,7 +30,7 @@ void print_tasks(const vector<Task>& tasks) {
     cout << "Current tasks:\n";
     for (size_t i = 0; i < tasks.size(); ++i) {
         const auto& t = tasks[i];
-        cout << i + 1 << ". " << t.task_name << t.task_name
+        cout << i + 1 << ". " << t.task_name
              << " - Status: "
              << (t.isDone ? "Completed" : "Pending")
              << endl;
@@ -44,6 +45,8 @@ int main() {
         print_menu();
         cin >> input;
 
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
         switch (input) {
             case 0: {
                 print_tasks(tasks);
@@ -51,12 +54,10 @@ int main() {
             }
 
             case 1: {
-                cin.ignore();
                 string task_name;
                 cout << "Enter a task name:" << endl;
                 getline(cin, task_name);
 
-                // Check for duplicates
                 bool found = false;
                 for (const auto& t : tasks) {
                     if (t.task_name == task_name) {
