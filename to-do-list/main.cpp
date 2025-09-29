@@ -43,7 +43,13 @@ int main() {
 
     while (input != 4) {
         print_menu();
-        cin >> input;
+
+        while (!(cin >> input)) {
+            cout << "Invalid input! Please enter a number between 0 and 4." << endl;
+            cin.clear(); // clear error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            print_menu();
+        }
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
@@ -124,5 +130,6 @@ int main() {
                 break;
         }
     }
+
     return 0;
 }
