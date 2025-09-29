@@ -29,8 +29,10 @@ void print_tasks(const vector<Task>& tasks) {
     cout << "Current tasks:\n";
     for (size_t i = 0; i < tasks.size(); ++i) {
         const auto& t = tasks[i];
-        cout << i + 1 << ". " << t.task_name
-             << " - Is done: " << boolalpha << t.isDone << endl;
+        cout << i + 1 << ". " << t.task_name << t.task_name
+             << " - Status: "
+             << (t.isDone ? "Completed" : "Pending")
+             << endl;
     }
 }
 
