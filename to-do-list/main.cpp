@@ -26,6 +26,12 @@ void print_menu() {
 }
 
 
+void print_tasks(const vector<Task>& tasks) {
+    for (Task t : tasks) {
+        cout << t.task_name << " - " << "Is done: " << t.isDone << endl;
+    }
+}
+
 
 int main() {
     vector<Task> tasks;
@@ -37,6 +43,9 @@ int main() {
         cin >> input;
 
         switch (input) {
+            case 0:
+                print_tasks(tasks);
+                
             case 1: {
                 cin.ignore();
                 string task;
